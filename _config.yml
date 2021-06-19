@@ -1,0 +1,16 @@
+
+title: demon-i386 l33t blog
+author: demon-i386
+avatar: "./assets/images/logo.jpg"
+rss-description: Blog where i post articles and projects
+
+twitter:
+  username: demon-i386
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: ./assets/images/logo.jpg
+        height: 600
+        width: 600
