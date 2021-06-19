@@ -11,6 +11,4 @@ defaults:
       path: ""
     values:
       image:
-        path: ./assets/images/logo.jpg
-        height: 600
-        width: 600
+        path: "./assets/images/logo.jpg"
