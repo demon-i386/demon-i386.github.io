@@ -52,6 +52,9 @@ body {
 		list-style-type: None;
 		font-size: 4vw;
 	}
+	.mt-4{
+		font-size: 14px;
+	}
 
 	
 
@@ -71,6 +74,9 @@ h1{
 }
 .mt-5{
 	font-size: 15px;
+}
+.mt-4{
+	font-size: 14px;
 }
 .logo .logoGIF{
 	width: 15%;

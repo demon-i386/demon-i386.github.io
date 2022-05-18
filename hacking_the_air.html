@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>demon-i386 | MENU</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" href="./assets/css/style.css">
+
+		<meta name="title" content="demon-i386">
+		<meta name="description" content="Blog where i post projects and articles">
+		<meta name="keywords" content="1337, binex, binary-exploitation, web-exploitation">
+		<meta name="robots" content="index, follow">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="language" content="English">
+		<meta name="revisit-after" content="5 days">
+		<meta name="author" content="demon-i386">
+
+		<meta property="og:title" content="demon-i386 leet blog"/>
+		<meta property="og:type" content="blog"/>
+		<meta property="og:author" content="demon-i386"/>
+		<meta property="og:description" content="Blog where i post projects and articles"/>
+		<meta property="og:image" content="/images/logo.png"/>
+		<meta property="og:url" content="https://demon-i386.github.io"/>
+		<meta property="og:site_name" content="demon-i386"/>
+
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:url" content="images/logo.png">
+		<meta name="twitter:title" content="demon 1337 blog">
+		<meta name="twitter:description" content="yassup im demon">
+		<meta name="twitter:image" content="/images/logo.png">
+	</head>
+
+	<body>
+		<br/>
+		<div class="logo" align="center">
+			<img src="https://media.tenor.com/images/3a334eee2084c4de67857894dedfaf8b/tenor.gif" class="logoGIF"/>
+			<br/><br/>
+			<h1>- Hacking the air for fun and profit -</h1>
+		</div>
+
+		<div id = "border">
+			<div class="content mt-5">
+				<div class="container-fluid">
+					<h1># Content</h1>
+					<div class="row">
+                        <div class="col">
+                            </br></br>
+                            <h2 style="font-size: 20px;">Authentication</h2>
+                            <h5 class="mt-5">WLAN Auth</h5>
+                            <h5 class="mt-4">Types</h5>
+                            <ul>
+                                <h5 class="mt-4">Open Auth</h5>
+                                    
+                                    <l1>- No credentials needed</l1>
+                                    <li>- 2 packets and association is finished</li>
+                                
+                                <h5 class="mt-4">Shared key Auth</h5>
+                                    <l1>- WEP Encryption</l1>
+                            </ul>
+                            
+                            
+                            <h2 style="font-size:20px">WEP (Wired Equivalent Privacy) Encryption</h2>
+                            <ul>
+                                <li style="font-size: 15px">Symetric Encryption</li>
+                                <li style="font-size: 15px">64/128 bits key size</li>
+                                <li style="font-size: 15px">24 bits (Part of key) Initialization Vector (IV)</li>
+                                <li style="font-size: 15px">IV can be interpreted as an salt for the WEP key</li>
+                                <li style="font-size: 15px">Challenge - Response scheme (Server recevied random nonce encryption with shared key / Client encrypted nonce decrypted and compared with original AP nonce)</li>
+                            </ul>
+                            
+                            <h5 class="mt-5">Encryption</h5>
+                            
+                            <pre style="font-size 15px;">
+                            CypherText = PlainText ⊕ RC4(IV, Key)
+                            
+                            | Server Challenge      | 
+                            | Data | Checksum (CRC) | →→→→→→→→→→→→→→→→→→→→→→→→→→→→→→ XOred → | IV | XORed CypherText |  
+                            | IV | WEP KEY | → Encryption (RC4) → | Key Stream |   → ↑
+                            |  Shared Key  | 
+                            
+                            16,777,216 IV Possibilities (Some weaker than others / repeated IVs could appear)
+                            The plan: Collect a large number of IVs them try to break the WEP key (Key Stream Reuse)
+                            </pre>
+                            <h5 class="mt-5">Decryption</h5>
+                            <pre>
+                            PlainText = RC4(IV, Key) ⊕ CypherText
+                            </pre>
+                            <ul>
+                                <h5 class="mt-4">Partial plaintext can be recovered due to packet regularities (ex: static informations such as protocol default informations)</h5><br/>
+                            
+                               <img src="./assets/images/wep_decryption.png" width="50%" height="50%">
+                            
+                            </ul>
+                            
+                            <h2 style="font-size: 20px;">Hotspot Attack (Open Network)</h2>
+
+                            
+                            <h5 class="mt-5">Evil Twin (Soft AP)</h5>
+                            <ul>
+                                <li style="font-size: 15px">Same ESSID / BSSID</li>
+                                <li style="font-size: 15px">Deauth -> Connection</li>
+                            
+                            
+                                <img src="./assets/images/evil_twin.png" width="50%" height="50%">
+                            
+                                <h5 class="mt-4">Create Soft AP</h5>
+                                    <code style="font-size: 15px;">airbase-ng -a CLONE_BSSID -e CLONE_ESSID mon0</code>
+                            </ul>
+                            <h2 style="font-size: 20px;">Aircrack-ng Suite</h2>
+                            <ul>
+                                <code style="font-size: 15px;">sudo airmon-ng start wlx983f9f1724c3</code>
+                                <li style="font-size: 15px">Start monitor mode on specified interface</li></br>
+
+                                <code style="font-size: 15px;">sudo iwconfig wlp0s20f3 channel 2</code>
+                                <li style="font-size: 15px">Change interface channel (for packet injection)</li><br/>
+
+                                <code style="font-size: 15px;">sudo airodump-ng wlan0mon -d 04:25:E0:B1:E5:89 -w psk</code>
+                                <li style="font-size: 15px">Listen connections to BSSID 04:25:E0:B1:E5:89 and save handshakes to file psk (use monitor interface)</li><br/>
+
+                                <code style="font-size: 15px;">sudo aireplay-ng --deauth 0 -a 04:25:E0:B1:E5:89 wlp0s20f3</code>
+                                <li style="font-size: 15px">Launch deauth attack on BSSID 04:25:E0:B1:E5:89 using wlp0s20f3 interface (packet injection)</li><br/>
+
+                                <code style="font-size: 15px;">sudo python3 rogue.py -i wlp0s20f3 --internet --auth wpa-personal --essid VSOUZA -c 4 -b 08:95:2A:AB:7E:E1 --wpa-passphrase testeeee</code>
+                                <li style="font-size: 15px">Start rogue AP</li><br/>
+
+                                <code style="font-size: 15px;">sudo aircrack-ng -w /usr/share/seclists/Passwords/rockyou.txt -b 9C:5D:12:50:AA:56 psk-*.cap</code>
+                                <li style="font-size: 15px">Crack handshakes</li><br/>
+                            </ul>
+						</div>
+
+						</div>
+					</div>
+				<h1># Contact <h1>
+				<ul>
+					<li>Discord: demon-i386#1337</li>
+					<li>Matrix:  @demon-i386:matrix.org</li>
+					<li>Linkedin: <a href="https://www.linkedin.com/in/pedro-silva-844014206/">Pedro Silva</a></li>
+					<li>Mail: <a href="mailto:muranotatsuo@protonmail.com">muranotatsuo@protonmail.com</a> | <a href="mailto:pedrosilva1011-proton@protonmail.com">pedrosilva1011-proton@protonmail.com</a></li>
+				</ul>
+				</div>
+			</div>
+	</div>
+
+	<div align="center">
+		<img src="https://media.tenor.com/images/c979cd5a193d1c7377da82721ded65b2/tenor.gif">
+	</div>
+
+
+	</footer>
+	</body>
+	</center>
+</html>
