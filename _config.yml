@@ -1,4 +1,6 @@
 
+plugins:
+  - jekyll-feed
 title: demon-i386 l33t blog
 author: demon-i386
 avatar: "./assets/images/logo.jpg"
