@@ -54,8 +54,18 @@
 
 							<h2 style="font-size: 20px;">Ethereum</h2>
 
-							Gas fee is used for preventing issues such as infinite code running
-							<pre style="font-size 15px; color: white;">
+
+                            <h4 style="text-align: center; justify-content: center; left: 25%;">Proof-of-Work</h4>
+
+
+                            Proof-of-Stake</br> 
+
+							Gas</br> 
+                            
+							<pre style="color: white;">
+
+                                used for preventing issues such as infinite code running and network spam is a fee for using computational power
+
                                 1 gwei = 0,00000001 ETH
 
                                 Total gas cost = Operation cost * Gas price (gwei)
@@ -63,6 +73,8 @@
 
                                 Miners profit from gas and choose priority transations based on transaction fee, anyone 
                                 can speed up the queue paying more for the computation.
+                                Mining is the process of creating, verifying, publishing or propagating a block of transactions 
+                                to the blockchain.
 
 
                                 Example:
@@ -70,7 +82,7 @@
                                 
                                 Transaction fee = Gas limit * (Base fee + Tip)
 
-                                - Gas limit: The maximum amount used in a transaction. (minimum: 21000 gwei)
+                                - Gas limit: The maximum amount that is willing to be used in a transaction, refunded if unused. (minimum: 21000 gwei)
 
                                 - Base free: Minimum amount of gwei to include the transaction on blockchain, dictated by the congestion level
                                 of the network. (dynamic)
@@ -82,7 +94,7 @@
                                 <pre style="font-size: 20px; color: red;">
                                 Prices used in this example can be outdated
                                 </pre>
-                            <pre style="font-size 15px; color: white;">
+                            <pre style="color: white;">
                                 Alice pays Bob 1 ETH. 
                                 The values of the fee is: the gas limit (minimum of 21,000 gwei), the base fee of 33 gwei and a tip of 20 gwei.
 
