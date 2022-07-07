@@ -93,7 +93,7 @@
 
                                 </pre>
                                 <pre style="font-size: 20px; color: red;">
-                                Prices used in this example can be outdated
+                                Prices used in this example may be outdated
                                 </pre>
                             <pre style="color: white;">
                                 Alice pays Bob 1 ETH. 
@@ -153,6 +153,39 @@
                             </pre>
 
                             <h2 style="font-size: 20px;">Development</h2>
+
+                            
+                            <code style="font-size: 15px;">truffle init</code>: Initialize truffle project</br>
+                            <code style="font-size: 15px;">truffle compile</code>: Compile contract bytecode / ABI</br>
+                            <code style="font-size: 15px;">truffle-config.js</code>: truffle deployement configuration file
+                            <pre>
+
+                                module.exports = {
+                                    networks: {
+                                  
+                                      development: {
+                                          host: "127.0.0.1",     // Localhost (default: none)
+                                          port: 7545,            // Standard Ethereum port (default: none)
+                                          network_id: "*",       // Any network (default: none)
+                                      websocket: true
+                                  }
+                                    },
+                                    mocha: {
+                                  
+                                    },
+                                    compilers: {
+                                      solc: {
+                                        version: "0.8.14",      // Fetch exact version from solc-bin (default: truffle's version)
+                                      }
+                                    },
+                                  };
+                                  
+                            </pre>
+                            <code style="font-size: 15px;">ganache</code>: start ganache testnet (you can also use geth)</br>
+                            <code style="font-size: 15px;">truffle migrate</code>: deploy contract to the testnet</br>
+                            <code style="font-size: 15px;">geth</code>: interact with deployed contract</br>
+
+
 
                             <h2 style="font-size: 20px;">Lab Setup</h2>
                             
